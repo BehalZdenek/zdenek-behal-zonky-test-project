@@ -4,8 +4,8 @@
 html,
 body,
 #root {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
 }
@@ -44,6 +44,7 @@ button {
     border-radius: 7px;
     box-shadow: $default-shadow;
     transition: 500ms;
+    font-family: $input-font;
     z-index: 1;
     color: $font-primary-dark-color;
     &:hover {
@@ -62,9 +63,10 @@ button {
     display: flex;
     flex-wrap: wrap;
     padding: 30px 70px;
+    padding-top: 71px;
 }
 .container-header {
-    width: 100%;
+    width: calc(100% - 40px);
     padding: 10px 20px;
     h1 {
         font-size: $huge-text;
@@ -79,13 +81,24 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 70px;
     background-color: rgba($primary-blue, 0.8);
     color: $font-primary-light-color;
+    box-shadow: $default-shadow;
+    position: fixed;
+    user-select: none;
+    z-index: 50;
     a {
         color: $font-primary-light-color;
         font-size: $huge-text;
         padding: 10px 15px;
         transition: 600ms;
+        height: calc(100% - 20px);
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
         &:hover {
             background-color: rgba($primary-blue, 0.55);
         }
@@ -104,10 +117,14 @@ button {
     border: 1px solid $primary-blue;
     position: relative;
     min-height: 20px;
+    &.animate {
+        animation: highlightRatings 1s infinite;
+    }
     .ratings-label {
         position: absolute;
         top: -13px;
         background-color: $white-color;
+        font-family: $input-font;
         padding: 0 10px;
     }
     .ratings-content {
@@ -136,6 +153,14 @@ button {
             background-color: rgba($green-color, 0.85);
             border: 1px solid rgba($green-color, 0.25);
             color: $font-primary-light-color;
+            &:hover {
+                background-color: rgba($green-color, 0.64);
+            }
+        }
+        &:active {
+            transform: translateY(2px);
+            background-color: rgba($primary-blue, 0.65);
+            color: $font-primary-light-color;
         }
     }
 }
@@ -154,11 +179,13 @@ button {
         top: -13px;
         background-color: $white-color;
         padding: 0 10px;
+        font-family: $input-font;
     }
     .average-value-content {
         width: 100%;
         display: flex;
         flex-direction: column;
+        animation: calculatorAppearIn 1.5s;
         &.noValue {
             flex-direction: row;
             align-items: center;
@@ -200,11 +227,11 @@ button {
 
 //loading
 .loading-screen {
-    position: absolute;
+    position: fixed;
     width: 100%;
     left: 0;
-    top: 61px;
-    height: calc(100% - 61px);
+    top: 70px;
+    height: calc(100% - 70px);
     background-color: rgba($primary-blue, 0.8);
     color: $font-primary-light-color;
     display: flex;
@@ -213,6 +240,7 @@ button {
     justify-items: center;
     align-items: center;
     z-index: 1000;
+    font-size: $big-text;
 }
 
 .lds-ring {
@@ -220,6 +248,7 @@ button {
     position: relative;
     width: 64px;
     height: 64px;
+    margin-right: 15px;
 }
 .lds-ring div {
     box-sizing: border-box;
@@ -242,11 +271,33 @@ button {
 .lds-ring div:nth-child(3) {
     animation-delay: -0.15s;
 }
+
 @keyframes lds-ring {
     0% {
         transform: rotate(0deg);
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes highlightRatings {
+    0% {
+        box-shadow: 0px 0px 0px 0px $primary-blue inset;
+    }
+    50% {
+        box-shadow: 0px 0px 10px -4px $primary-blue inset;
+    }
+    100% {
+        box-shadow: 0px 0px 0px 0px $primary-blue inset;
+    }
+}
+
+@keyframes calculatorAppearIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }

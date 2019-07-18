@@ -63,7 +63,7 @@ class App extends Component {
             });
         }
     };
-    countDiameter = selectedRating => {
+    countAverage = selectedRating => {
         const { valuesField } = this.state;
         let filtered = valuesField.filter(function(item) {
             if (item.rating === selectedRating) {
@@ -75,9 +75,9 @@ class App extends Component {
         let reduceValue = filtered.reduce(function(total, currentValue) {
             return total + currentValue.amount;
         }, 0);
-        let diameter = reduceValue / filtered.length;
+        let average = reduceValue / filtered.length;
         this.setState({
-            diameter: Math.round(diameter)
+            average: Math.round(average)
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
         });
@@ -87,7 +87,7 @@ class App extends Component {
             letterRating: letterRating,
             selectedRating: numberRating
         });
-        this.countDiameter(letterRating);
+        this.countAverage(letterRating);
     };
     loadingStart = () => {
         this.setState({ isLoading: true });
@@ -95,8 +95,20 @@ class App extends Component {
     loadingEnd = () => {
         this.setState({ isLoading: false });
     };
+    mouseOverNoValue = () => {
+        let element = document.getElementById('ratings-container');
+        if (element) {
+            element.className = 'ratings-wrapper animate';
+        }
+    };
+    mouseLeaveNoValue = () => {
+        let element = document.getElementById('ratings-container');
+        if (element) {
+            element.className = 'ratings-wrapper';
+        }
+    };
     render() {
-        const { selectedRating, diameter, isLoading } = this.state;
+        const { selectedRating, average, isLoading } = this.state;
         return (
             <div className="page">
                 <Header />
@@ -117,7 +129,7 @@ class App extends Component {
                         <p>Vyberte rating (tlačítka s procenty), pro který si přejete zobrazit průměrnou výši půjček</p>
                     </div>
                     <div className="big-content-wrap">
-                        <div className="ratings-wrapper">
+                        <div className="ratings-wrapper" id="ratings-container">
                             <div className="ratings-label">Rating:</div>
                             <div className="ratings-content">{this.drawRatings()}</div>
                         </div>
@@ -128,9 +140,9 @@ class App extends Component {
                                     <p className="selected-value-text">
                                         Vybraná hodnota: <b>{selectedRating}</b>
                                     </p>
-                                    {parseInt(diameter) ? (
+                                    {parseInt(average) ? (
                                         <p className="counted-value">
-                                            Vypočítaný průměr: <br /> <b>{diameter} Kč</b>
+                                            Vypočítaný průměr: <br /> <b>{average} Kč</b>
                                         </p>
                                     ) : (
                                         <p className="counted-value">Vybraný rating nemá žádné záznamy, podle kterých by se dal vypočítat průměr.</p>
@@ -148,7 +160,13 @@ class App extends Component {
                                     </div>
                                 </div>
                             ) : (
-                                <div className="average-value-content noValue">
+                                <div
+                                    className="average-value-content noValue"
+                                    onMouseOver={this.mouseOverNoValue}
+                                    onMouseLeave={() => {
+                                        this.mouseLeaveNoValue();
+                                    }}
+                                >
                                     <p className="average-value-noValueText">Pro zobrazení výsledku vyberte v menu vlevo hodnotu.</p>
                                 </div>
                             )}
