@@ -1,0 +1,31 @@
+@import './variables.scss';
+
+html,
+body,
+#root {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+ul,
+ol,
+li,
+p,
+span,
+button,
+a {
+    margin: 0;
+    font-size: 1rem;
+    font-family: $main-font;
+    font-weight: 400;
+    color: $font-primary-color;
+}

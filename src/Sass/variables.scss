@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|Roboto+Slab:100,300,400,700&display=swap');
+//variables for styles (colors, fonts, shadows, ...)
+
+//colors
+$primary-blue: rgb(0, 107, 168);
+$secondary-red: rgb(201, 0, 0);
+$background-blue: rgb(162, 208, 247);
+$black-color: rgb(0, 0, 0);
+$font-primary-color: rgba(19, 19, 19, 0.837);
+
+//fonts
+$main-font: 'Roboto Slab', serif;
+$input-font: 'PT Sans', sans-serif;
+
+//shadows
+$default-shadow: 0px 0px 15px 5px $black-color;
