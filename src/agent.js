@@ -23,20 +23,17 @@ const requests = {
     del: (url, body) =>
         superagent
             .del(`${API_ROOT}${url}`)
-            //.use(tokenPlugin)
             .send(`${body}`)
             .end(handleErrors)
             .then(responseBody),
     get: url =>
         superagent
             .get(`${API_ROOT}${url}`)
-            //.use(tokenPlugin)
             .end(handleErrors)
             .then(responseBody),
     put: (url, body) =>
         superagent
             .put(`${API_ROOT}${url}`)
-            //.use(tokenPlugin)
             .send(`${body}`)
             .set('Content-Type', 'application/x-www-form-urlencoded')
             .then(responseBody),
@@ -44,32 +41,8 @@ const requests = {
         superagent
             .post(`${API_ROOT}${url}`)
             .type('form')
-            //.use(tokenPlugin)
             .send(`${body}`)
             .set('Content-Type', 'application/x-www-form-urlencoded')
-            .then(responseBody),
-    postJSON: (url, body) =>
-        superagent
-            .post(`${API_ROOT}${url}`)
-            .type('form')
-            //.use(tokenPlugin)
-            .send(`${body}`)
-            .set('Content-Type', 'application/json')
-            .then(responseBody),
-    post_upload: (url, file) =>
-        superagent
-            .post(`${API_ROOT}${url}`)
-            //.use(tokenPlugin)
-            .attach('files[]', file)
-            .end(handleErrors)
-            .then(responseBody),
-    postImage: (url, body) =>
-        superagent
-            .post(`${API_ROOT}${url}`)
-            .type('form')
-            //.use(tokenPlugin)
-            .send(`${body}`)
-            .set('Content-Type', 'multipart/form-data')
             .then(responseBody)
 };
 

@@ -4,13 +4,22 @@
 //colors
 $primary-blue: rgb(0, 107, 168);
 $secondary-red: rgb(201, 0, 0);
+$green-color: rgb(7, 187, 1);
 $background-blue: rgb(162, 208, 247);
 $black-color: rgb(0, 0, 0);
-$font-primary-color: rgba(19, 19, 19, 0.837);
+$white-color: rgb(255, 255, 255);
+$font-primary-dark-color: rgba(19, 19, 19, 0.837);
+$font-primary-light-color: rgba(255, 255, 255, 0.911);
 
 //fonts
 $main-font: 'Roboto Slab', serif;
 $input-font: 'PT Sans', sans-serif;
 
+//font-sizes
+$huge-text: 1.941rem;
+$big-text: 1.452rem;
+$normal-text: 1rem;
+$small-text: 0.793rem;
+
 //shadows
-$default-shadow: 0px 0px 15px 5px $black-color;
+$default-shadow: 0px 0px 10px -4px $black-color;
